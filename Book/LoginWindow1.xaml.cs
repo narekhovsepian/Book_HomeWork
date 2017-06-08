@@ -22,7 +22,7 @@ namespace Book
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public static string connectionSString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\nhovs\documents\visual studio 2017\Projects\Book\Book\DataBaseBook.mdf;Integrated Security=True";
+        public static string connectionSString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DataBaseBook.mdf;Integrated Security=True";
 
         public LoginWindow()
         {
