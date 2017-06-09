@@ -191,6 +191,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>DataBaseBook.mdf</DependentUpon>
     </Content>
+    <Resource Include="Images\Book_Template.jpg" />
     <Resource Include="Images\images %281%29.png" />
     <Resource Include="Images\UserLoginIcon.png" />
   </ItemGroup>
