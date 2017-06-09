@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="LoginWindow1" Height="284" Width="410" Background="#FF575757"  >
     <Border Height="250" CornerRadius="30" Background="#FF23232B" Margin="0,0,0,0"   >
-        <Grid  Margin="40" Background="#FF5D5D5D" >
+        <Grid  Margin="40" Background="#FF686161" >
             <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" Foreground="#FF131757" Margin="0"/>
             <Label Content="UserName" VerticalAlignment="Center" FontSize="12" Foreground="#FFF9F9F9" Height="24" Margin="0,58,0,88"/>
             <TextBox  FontSize="20"  x:Name="txtUserName" Margin="92,57,36,86" Background="#FF526170"  Foreground="White" RenderTransformOrigin="0.512,0.6"/>
@@ -17,7 +17,7 @@
 
 
 
-            <Button Content="Login" Height="24" Width="73"  VerticalAlignment="Top" Margin="92,136,143,0"  FontSize="15" Click="Button_Click" BorderBrush="White">
+            <Button Content="Login Staff" Height="24" Width="73"  VerticalAlignment="Top" Margin="118,135,0,0"  FontSize="14" Click="Button_Click" BorderBrush="White" HorizontalAlignment="Left">
                 <Button.Foreground>
                     <SolidColorBrush Color="White" Opacity="0.5"/>
                 </Button.Foreground>
@@ -36,7 +36,7 @@
             </Button>
 
 
-            <Button Content="SignUp" Margin="199,136,36,10" Height="24" Width="73"  FontSize="15"  BorderBrush="White" Click="Button_Click_1" >
+            <Button Content="SignUp" Margin="213,134,0,0" Height="24" Width="73"  FontSize="15"  BorderBrush="White" Click="Button_Click_1" VerticalAlignment="Top" RenderTransformOrigin="1.097,0.56" HorizontalAlignment="Left" >
                 <Button.Foreground>
                     <SolidColorBrush Color="White" Opacity="0.5"/>
                 </Button.Foreground>
@@ -53,7 +53,11 @@
                     </ImageBrush>
                 </Button.Background>
             </Button>
-            <Button Content="LoginClient" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,136,0,0"/>
+            <Button Content="LoginClient" FontSize="14" BorderBrush="White" Height="24" VerticalAlignment="Top" Margin="20,136,0,0" Background="#FF686161" HorizontalAlignment="Left" Width="75" Click="Button_Click_2" >
+                <Button.Foreground>
+                    <SolidColorBrush Color="White" Opacity="0.5"/>
+                </Button.Foreground>
+            </Button>
 
         </Grid>
 

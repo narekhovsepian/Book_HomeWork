@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Data.SqlTypes;
 
 namespace Book
 {
@@ -19,6 +20,7 @@ namespace Book
     /// Interaction logic for SignUpWindow.xaml
     /// </summary>
     public partial class SignUpWindow : Window
+
     {
         public SignUpWindow()
         {
@@ -61,18 +63,18 @@ namespace Book
                 SqlCommand command = new SqlCommand("INSERT INTO Users(FirstName,Surname,Birthday,Gender,Password)VALUES(@FirstName,@Surname,@Birthday,@Gender,@Password)", MainWindow.sqlConnection);
                 command.Parameters.AddWithValue("FirstName", firstNameTextBox.Text);
                 command.Parameters.AddWithValue("Surname", surnameTextBox.Text);
-                command.Parameters.AddWithValue("Birthday", birthdayTextBox.Text);
-                command.Parameters.AddWithValue("Gender", genderComboBox.Text);
+                command.Parameters.AddWithValue("Birthday", Convert.ToDateTime(birthdayTextBox.Text));
+                command.Parameters.AddWithValue("Gender", Convert.ToString(genderComboBox.Text));
                 command.Parameters.AddWithValue("Password", Encryption.GetHashString(passwordBox.Password));
 
                 await command.ExecuteNonQueryAsync();
 
 
                 MessageBox.Show("You have enrolled in the program book");
-                this.Close();
+
                 LoginWindow show = new LoginWindow();
                 show.Show();
-
+                this.Close();
             }
         }
     }

@@ -22,8 +22,8 @@ namespace Book
     /// </summary>
     public partial class LoginWindow : Window
     {
-        public static string connectionSString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DataBaseBook.mdf;Integrated Security=True";
-
+        //public static string connectionSString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DataBaseBook.mdf;Integrated Security=True";
+        public static string connectionSString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\nhovs\documents\visual studio 2017\Projects\Book\Book\DataBaseBook.mdf;Integrated Security=True";
         public LoginWindow()
         {
             InitializeComponent();
@@ -77,6 +77,46 @@ namespace Book
             SignUpWindow show = new SignUpWindow();
             show.Show();
             this.Close();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            SqlConnection sqlConnection = new SqlConnection(connectionSString);
+            try
+            {
+
+                if (sqlConnection.State == ConnectionState.Closed)
+
+                    sqlConnection.Open();
+                String query = "SELECT COUNT(1) FROM Users WHERE FirstName=@UserName AND Password=@Password ";
+                SqlCommand sqlCmd = new SqlCommand(query, sqlConnection);
+                sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text);
+                sqlCmd.Parameters.AddWithValue("@Password", Encryption.GetHashString(txtPassword.Password));
+
+                int count = Convert.ToInt32(sqlCmd.ExecuteScalar());
+
+
+                if (count == 1)
+                {
+
+                    ClientWindow clent = new ClientWindow();
+                    clent.Show();
+                    this.Close();
+
+                }
+                else
+                {
+                    MessageBox.Show("UserName or Password is incorrect.");
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally { sqlConnection.Close(); }
         }
     }
 }

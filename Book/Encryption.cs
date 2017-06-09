@@ -24,5 +24,7 @@ namespace Book
             return new Guid(hash);
         }
 
+
     }
 }
+

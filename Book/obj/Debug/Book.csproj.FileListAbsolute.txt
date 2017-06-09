@@ -68,3 +68,5 @@ C:\Users\nhovs\Documents\Visual Studio 2017\Projects\Book\Book\bin\Debug\Microso
 C:\Users\nhovs\Documents\Visual Studio 2017\Projects\Book\Book\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\nhovs\Documents\Visual Studio 2017\Projects\Book\Book\obj\Debug\SignUpWindow.g.cs
 C:\Users\nhovs\Documents\Visual Studio 2017\Projects\Book\Book\obj\Debug\SignUpWindow.baml
+C:\Users\nhovs\documents\visual studio 2017\Projects\Book\Book\obj\Debug\ClientWindow.g.cs
+C:\Users\nhovs\documents\visual studio 2017\Projects\Book\Book\obj\Debug\ClientWindow.baml
