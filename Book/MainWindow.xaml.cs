@@ -29,10 +29,10 @@ namespace Book
 
         public static SqlConnection sqlConnection;
         public static SqlCommand sqlCommand;
-        SqlCommandBuilder sqlCommandBuilder;
-        SqlDataReader sqlDataReader;
-        DataTable dataTable;
-        SqlDataAdapter sqlDataAdapter;
+        public static SqlCommandBuilder sqlCommandBuilder;
+        public static SqlDataReader sqlDataReader;
+        public static DataTable dataTable;
+        public static SqlDataAdapter sqlDataAdapter;
 
         public MainWindow()
         {
