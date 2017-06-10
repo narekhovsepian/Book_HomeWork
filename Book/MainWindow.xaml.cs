@@ -16,8 +16,7 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Windows.Media.Animation;
-
-
+using System.Configuration;
 
 namespace Book
 {
@@ -28,8 +27,8 @@ namespace Book
     {
 
 
-       public static  SqlConnection sqlConnection;
-       public static SqlCommand sqlCommand;
+        public static SqlConnection sqlConnection;
+        public static SqlCommand sqlCommand;
         SqlCommandBuilder sqlCommandBuilder;
         SqlDataReader sqlDataReader;
         DataTable dataTable;
@@ -70,31 +69,11 @@ namespace Book
             }
 
         }
-        /*
-        private void GetData()
-        {
 
-            try
-            {
-                sqlDataAdapter = new SqlDataAdapter("Select * From Books", LoginWindow1.connectionSString);
-                sqlCommandBuilder = new SqlCommandBuilder(sqlDataAdapter);
-
-                dataTable = new DataTable();
-                dataTable.Locale = System.Globalization.CultureInfo.InvariantCulture;
-                sqlDataAdapter.Fill(dataTable);
-
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Run");
-            }
-        }
-*/
         private void Windows_Loaded(object sender, RoutedEventArgs e)
         {
             LoadTableBooks();
-
+           // PapulateUsers();
 
             /*   Book.DataBaseBookDataSet dataBaseBookDataSet = ((Book.DataBaseBookDataSet)(this.FindResource("dataBaseBookDataSet")));
                // Load data into the table Books. You can modify this code as needed.
@@ -103,11 +82,14 @@ namespace Book
                System.Windows.Data.CollectionViewSource booksViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("booksViewSource")));
                booksViewSource.View.MoveCurrentToFirst();
                */
+
+
         }
 
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+
             if (string.IsNullOrEmpty(textbox1.Text) && string.IsNullOrWhiteSpace(textbox1.Text) &&
                 string.IsNullOrEmpty(textbox2.Text) && string.IsNullOrWhiteSpace(textbox2.Text) &&
                 string.IsNullOrEmpty(textbox3.Text) && string.IsNullOrWhiteSpace(textbox3.Text))
@@ -152,11 +134,44 @@ namespace Book
             {
                 Status.IsHitTestVisible = true;
                 Status.Content = "Be sure to fill in the name of the book";
-               
+
 
             }
 
 
+
+        }
+        private void PapulateBooks()
+        {
+            string query = "SELECT a.Name FROM Users a " + "INNER JOIN USersBooks b ON a.Id=b.BookID" +
+                   "WHERE b.BookID=@BookID ";
+            using (sqlConnection = new SqlConnection(LoginWindow.connectionSString))
+            using (sqlCommand = new SqlCommand(query, sqlConnection))
+            using (sqlDataAdapter = new SqlDataAdapter(sqlCommand))
+            {
+                sqlCommand.Parameters.AddWithValue("UserID", listboxUsers.SelectedValue);
+                dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                listboxBooks.DataContext = dataTable;
+
+
+            }
+
+        }
+        private void PapulateUsers()
+        {
+            using (sqlConnection = new SqlConnection(LoginWindow.connectionSString))
+            using (sqlDataAdapter = new SqlDataAdapter("SELECT * FROM Users", sqlConnection))
+            {
+                dataTable = new DataTable();
+                sqlDataAdapter.Fill(dataTable);
+                listboxUsers.DataContext = dataTable;
+            }
+        }
+
+        private void listboxUsers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            PapulateBooks();
         }
     }
 }
